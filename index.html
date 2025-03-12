@@ -15,18 +15,19 @@
 <body>
   <!-- AR Scene -->
   <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best; planeDetection: true;">
-    <!-- พื้นที่ตรวจจับพื้น (โต๊ะ หรือพื้นที่เรียบ) -->
-    <!-- จะไม่ต้องใส่เครื่องหมายมาร์คใดๆเลย -->
+    <!-- พื้นที่ตรวจจับพื้น (โต๊ะ หรือพื้นเรียบ) -->
     
     <!-- โมเดล 3D ของสินค้า -->
     <a-entity 
       id="product"
       gltf-model="url(LamptanNewGloss11W.glb)"  <!-- ไฟล์ GLB ที่คุณต้องการ -->
       scale="1 1 1"
-      position="0 0 0"
+      position="0 0 0"  <!-- ปรับตำแหน่งให้สูงจากพื้น -->
       rotation="0 45 0">
     </a-entity>
 
     <!-- กล้องที่ใช้มองเห็นใน AR -->
-    <a-entity camera look-controls="enabled: true;"></a-entity>
-  </a
+    <a-entity camera look-controls="enabled: true;" position="0 1.6 0"></a-entity>
+  </a-scene>
+</body>
+</html>
