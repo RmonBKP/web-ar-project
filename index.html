@@ -15,19 +15,43 @@
 <body>
   <!-- AR Scene -->
   <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best; planeDetection: true;">
-    <!-- พื้นที่ตรวจจับพื้น (โต๊ะ หรือพื้นเรียบ) -->
-    
     <!-- โมเดล 3D ของสินค้า -->
-    <a-entity 
-      id="product"
+    <a-entity id="product"
       gltf-model="url(LamptanNewGloss11W.glb)"  <!-- ไฟล์ GLB ที่คุณต้องการ -->
-      scale="1 1 1"
-      position="0 0 0"  <!-- ปรับตำแหน่งให้สูงจากพื้น -->
-      rotation="0 45 0">
+      position="0 0 -3"  <!-- ตั้งตำแหน่งให้ตรงหน้ากล้อง -->
+      rotation="0 45 0"
+      scale="0.5 0.5 0.5">  <!-- ขนาดเริ่มต้นของโมเดล -->
     </a-entity>
 
-    <!-- กล้องที่ใช้มองเห็นใน AR -->
-    <a-entity camera look-controls="enabled: true;" position="0 1.6 0"></a-entity>
+    <!-- กล้องสำหรับการมองเห็น -->
+    <a-entity camera look-controls="enabled: true;"></a-entity>
   </a-scene>
+
+  <script>
+    // ฟังก์ชันในการคำนวณขนาดของโมเดลโดยอัตโนมัติ
+    window.addEventListener('load', function() {
+      var scene = document.querySelector('a-scene');
+      var product = document.querySelector('#product');
+      
+      // ฟังก์ชันในการปรับขนาดของโมเดล
+      function adjustModelScale() {
+        // ขนาดหน้าจอ (viewport)
+        var screenWidth = window.innerWidth;
+        var screenHeight = window.innerHeight;
+
+        // คำนวณขนาดของโมเดลที่จะปรับให้พอดีกับหน้าจอ
+        var scaleValue = Math.min(screenWidth, screenHeight) / 1000;  // ปรับสเกลตามขนาดหน้าจอ
+
+        // ตั้งค่า scale ใหม่ให้กับโมเดล
+        product.setAttribute('scale', scaleValue + ' ' + scaleValue + ' ' + scaleValue);
+      }
+
+      // เรียกใช้งานฟังก์ชันปรับขนาดทันที
+      adjustModelScale();
+
+      // ปรับขนาดเมื่อหน้าต่างถูกรีไซส์
+      window.addEventListener('resize', adjustModelScale);
+    });
+  </script>
 </body>
 </html>
