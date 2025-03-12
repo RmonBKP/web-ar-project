@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web AR - โมเดล 3D สินค้า</title>
-  <!-- โหลด A-Frame -->
+  <!-- โหลด A-Frame และ AR.js -->
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
   <style>
     body { margin: 0; overflow: hidden; }
     a-scene { width: 100%; height: 100vh; }
@@ -13,18 +14,19 @@
 </head>
 <body>
   <!-- AR Scene -->
-  <a-scene embedded>
-    <!-- โมเดล 3D ของสินค้าที่จะแสดง -->
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best; planeDetection: true;">
+    <!-- พื้นที่ตรวจจับพื้น (โต๊ะ หรือพื้นที่เรียบ) -->
+    <!-- จะไม่ต้องใส่เครื่องหมายมาร์คใดๆเลย -->
+    
+    <!-- โมเดล 3D ของสินค้า -->
     <a-entity 
       id="product"
-      gltf-model="url(LamptanNewGloss11W.glb)"  <!-- โหลดไฟล์ GLB จากโฟลเดอร์เดียวกับ index.html -->
+      gltf-model="url(LamptanNewGloss11W.glb)"  <!-- ไฟล์ GLB ที่คุณต้องการ -->
       scale="1 1 1"
       position="0 0 0"
       rotation="0 45 0">
     </a-entity>
 
-    <!-- กล้องสำหรับการมองเห็น -->
+    <!-- กล้องที่ใช้มองเห็นใน AR -->
     <a-entity camera look-controls="enabled: true;"></a-entity>
-  </a-scene>
-</body>
-</html>
+  </a
