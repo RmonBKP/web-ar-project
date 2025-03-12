@@ -18,40 +18,13 @@
     <!-- โมเดล 3D ของสินค้า -->
     <a-entity id="product"
       gltf-model="url(LamptanNewGloss11W.glb)"  <!-- ไฟล์ GLB ที่คุณต้องการ -->
-      position="0 0 -3"  <!-- ตั้งตำแหน่งให้ตรงหน้ากล้อง -->
+      position="0 0 -2"  <!-- ตั้งตำแหน่งให้ห่างจากกล้อง -->
       rotation="0 45 0"
-      scale="0.5 0.5 0.5">  <!-- ขนาดเริ่มต้นของโมเดล -->
+      scale="0.2 0.2 0.2">  <!-- ขนาดของโมเดล -->
     </a-entity>
 
     <!-- กล้องสำหรับการมองเห็น -->
     <a-entity camera look-controls="enabled: true;"></a-entity>
   </a-scene>
-
-  <script>
-    // ฟังก์ชันในการคำนวณขนาดของโมเดลโดยอัตโนมัติ
-    window.addEventListener('load', function() {
-      var scene = document.querySelector('a-scene');
-      var product = document.querySelector('#product');
-      
-      // ฟังก์ชันในการปรับขนาดของโมเดล
-      function adjustModelScale() {
-        // ขนาดหน้าจอ (viewport)
-        var screenWidth = window.innerWidth;
-        var screenHeight = window.innerHeight;
-
-        // คำนวณขนาดของโมเดลที่จะปรับให้พอดีกับหน้าจอ
-        var scaleValue = Math.min(screenWidth, screenHeight) / 1000;  // ปรับสเกลตามขนาดหน้าจอ
-
-        // ตั้งค่า scale ใหม่ให้กับโมเดล
-        product.setAttribute('scale', scaleValue + ' ' + scaleValue + ' ' + scaleValue);
-      }
-
-      // เรียกใช้งานฟังก์ชันปรับขนาดทันที
-      adjustModelScale();
-
-      // ปรับขนาดเมื่อหน้าต่างถูกรีไซส์
-      window.addEventListener('resize', adjustModelScale);
-    });
-  </script>
 </body>
 </html>
